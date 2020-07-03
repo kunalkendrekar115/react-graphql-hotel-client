@@ -23,12 +23,21 @@ const AddNewHotel = () => {
   })
 
   const handleSubmit = (values) => {
+    let filterSelectedTariffs = values.tariffs.reduce((acc, tariff) => {
+      if (tariff.isSelected)
+        return [...acc, { roomType: tariff.roomType, rate: tariff.rate }]
+      return acc
+    }, [])
+
     addHotel({
-      variables: { hotel: { ...values } }
+      variables: { hotel: { ...values, tariff: filterSelectedTariffs } }
     })
   }
   return (
-    <LoadingContainer isLoading={loading} errorMessage={JSON.stringify(error)}>
+    <LoadingContainer
+      isLoading={loading}
+      errorMessage={error ? error.message : ""}
+    >
       <div
         style={{
           width: "100%",

@@ -36,7 +36,7 @@ const Hotels = () => {
       }}
     >
       {loadingHotels && <h4>Loading Hotels ...</h4>}
-      {hotelListLoadError && <h4>{JSON.stringify(hotelListLoadError)}</h4>}
+      {hotelListLoadError && <h4>{hotelListLoadError.message}</h4>}
 
       {hotelsList && (
         <HotelsList
@@ -47,7 +47,7 @@ const Hotels = () => {
 
       <LoadingContainer
         isLoading={loadingHotelInfo}
-        errorMessage={JSON.stringify(hotelLoadError)}
+        errorMessage={hotelLoadError ? hotelLoadError.message : ""}
       >
         {hotelData && (
           <div

@@ -20,9 +20,15 @@ const Amenities = ({ arrayHelpers, amenities }) => {
       arrayHelpers.remove(addedIndex)
     }
   }
+
+  const isChecked = (label) => {
+    const checked = arrayHelpers.form.values.amenities.includes(label)
+    return checked
+  }
+
   return (
     <div>
-      <h5>Select Amenities</h5>
+      <h4>Select Amenities</h4>
       <div
         style={{
           display: "flex",
@@ -35,6 +41,7 @@ const Amenities = ({ arrayHelpers, amenities }) => {
             control={
               <CustomField
                 type="checkbox"
+                checked={isChecked(amenity.label)}
                 name={amenity.name}
                 key={amenity.name}
                 onChange={({ target: { checked } }) =>

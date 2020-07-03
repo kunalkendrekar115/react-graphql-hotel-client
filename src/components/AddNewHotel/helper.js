@@ -9,8 +9,8 @@ export const validate = (values) => {
   if (values.contactPhone === null) errors.contactPhone = "Enter Contact Phone"
   if (values.contactEmail === "") errors.contactEmail = "Enter Contact Email"
 
-  values.tariffs.map(({ rate }, index) => {
-    if (rate === "") errors.tariffs[index].rate = "Enter Rate"
+  values.tariffs.map(({ rate, isSelected }, index) => {
+    if (isSelected && rate === "") errors.tariffs[index].rate = "Enter Rate"
   })
 
   const isTariffError =
@@ -86,6 +86,8 @@ export const fields = [
     type: "array",
     tariffs: [
       { roomType: "Single", rate: "" },
+      { roomType: "Double", rate: "" },
+      { roomType: "Executive", rate: "" },
       { roomType: "Delux", rate: "" }
     ]
   }
@@ -109,6 +111,7 @@ export const getInitialValues = () => {
 
   fields.map((field, index) => {
     initialValues[field.name] = getDefaultValueFromType(field.type)
+    if (field.tariffs) initialValues[field.name] = field.tariffs
   })
 
   return initialValues

@@ -21,8 +21,16 @@ const CustomField = ({ type, ...restProps }) => {
           helperText={isError() ? meta.error : ""}
         />
       )}
-      {type === "checkbox" && <Checkbox {...field} {...restProps}></Checkbox>}
-      {type === "rating" && <Rating {...field} {...restProps}></Rating>}
+      {type === "checkbox" && (
+        <Checkbox
+          checked={meta.value ? true : false}
+          {...field}
+          {...restProps}
+        ></Checkbox>
+      )}
+      {type === "rating" && (
+        <Rating value={meta.value} {...field} {...restProps}></Rating>
+      )}
     </>
   )
 }

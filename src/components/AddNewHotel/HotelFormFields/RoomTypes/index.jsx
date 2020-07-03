@@ -1,22 +1,11 @@
 import React from "react"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
-import { makeStyles } from "@material-ui/core/styles"
+
+import Grid from "@material-ui/core/Grid"
 
 import CustomField from "../../../common/CustomField"
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    MuiTextField: {
-      margin: theme.spacing(1),
-      width: "50px",
-      height: "25px"
-    }
-  }
-}))
-
 const RoomTypes = ({ tariffs, arrayHelpers }) => {
-  const classes = useStyles()
-
   const isSelected = (index) => {
     const {
       form: {
@@ -24,11 +13,7 @@ const RoomTypes = ({ tariffs, arrayHelpers }) => {
       }
     } = arrayHelpers
 
-    return (
-      addedTypes.findIndex(
-        ({ roomType }) => roomType === tariffs[index].roomType
-      ) !== -1
-    )
+    return addedTypes[index].isSelected
   }
 
   const handleChange = (checked, index) => {
@@ -50,44 +35,50 @@ const RoomTypes = ({ tariffs, arrayHelpers }) => {
       arrayHelpers.remove(addedIndex)
     }
   }
+
   return (
     <div>
-      <h5> Select Room types and enter rates </h5>
-      {tariffs.map(({ roomType }, index) => (
-        <div
-          style={{
-            display: "flex",
-            width: 200,
-            padding: 10,
-            justifyContent: "space-between"
-          }}
-        >
-          <FormControlLabel
-            control={
-              <CustomField
-                type="checkbox"
-                name={roomType}
-                key={roomType}
-                onChange={({ target: { checked } }) =>
-                  handleChange(checked, index)
-                }
-              />
-            }
-            label={roomType}
-          />
+      <h4> Select Room types and enter rates </h4>
 
-          <CustomField
-            disabled={!isSelected(index)}
-            name={`tariffs[${index}].rate`}
-            type="number"
-            size="small"
-            style={{ width: 100 }}
-            variant="outlined"
-            id={roomType}
-            label={"Rate"}
-          />
-        </div>
-      ))}
+      <Grid container spacing={4}>
+        {tariffs.map(({ roomType, rate }, index) => {
+          const isChecked = isSelected(index)
+          return (
+            <Grid item xs={6}>
+              <div
+                style={{
+                  width: "inherit",
+                  display: "flex",
+                  alignItems: "start",
+                  justifyContent: "space-between"
+                }}
+              >
+                <FormControlLabel
+                  control={
+                    <CustomField
+                      type="checkbox"
+                      name={`tariffs[${index}].isSelected`}
+                      key={roomType}
+                    />
+                  }
+                  label={roomType}
+                />
+
+                <CustomField
+                  disabled={!isChecked}
+                  name={`tariffs[${index}].rate`}
+                  type="number"
+                  size="small"
+                  style={{ width: 90 }}
+                  variant="outlined"
+                  id={roomType}
+                  label={"Rate"}
+                />
+              </div>
+            </Grid>
+          )
+        })}
+      </Grid>
     </div>
   )
 }
