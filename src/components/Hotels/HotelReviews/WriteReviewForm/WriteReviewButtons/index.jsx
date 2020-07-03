@@ -17,7 +17,7 @@ const WriteReviewButtons = ({ loading, onCancel }) => {
         color="secondary"
         onClick={onCancel}
       >
-        Reset
+        Cancel
       </Button>
       <Button
         type="submit"

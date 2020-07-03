@@ -30,7 +30,7 @@ const AddNewHotel = () => {
     }, [])
 
     addHotel({
-      variables: { hotel: { ...values, tariff: filterSelectedTariffs } }
+      variables: { hotel: { ...values, tariffs: filterSelectedTariffs } }
     })
   }
   return (
