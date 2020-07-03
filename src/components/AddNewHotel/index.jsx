@@ -53,7 +53,7 @@ const AddNewHotel = () => {
           validate={validate}
           onSubmit={handleSubmit}
         >
-          <Form style={{ width: 450 }}>
+          <Form style={{ width: 500 }}>
             <HotelFormFields />
             <HotelFormButtons />
           </Form>

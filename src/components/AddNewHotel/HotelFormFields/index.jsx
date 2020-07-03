@@ -3,17 +3,17 @@ import React from "react"
 import CustomField from "../../common/CustomField"
 import RoomTypes from "./RoomTypes"
 import Amenities from "./Amenities"
-
+import Grid from "@material-ui/core/Grid"
 import { FieldArray } from "formik"
 import { fields } from "../helper"
 
 const HotelFormFields = () => {
   return (
-    <>
+    <Grid container spacing={3} style={{ marginTop: 10 }}>
       {fields.map((field, index) => (
         <>
           {field.tariffs === undefined && field.amenities === undefined && (
-            <div style={{ width: "inherit", padding: 8 }}>
+            <Grid item xs={6}>
               <CustomField
                 key={field.name}
                 fullWidth
@@ -24,10 +24,10 @@ const HotelFormFields = () => {
                 id={field.name}
                 label={field.label}
               />
-            </div>
+            </Grid>
           )}
           {field.amenities && (
-            <div>
+            <Grid item xs={12}>
               <FieldArray
                 name={field.name}
                 render={(arrayHelpers) => (
@@ -37,10 +37,10 @@ const HotelFormFields = () => {
                   />
                 )}
               />
-            </div>
+            </Grid>
           )}
           {field.tariffs && (
-            <div>
+            <Grid item xs={12}>
               <FieldArray
                 name={field.name}
                 render={(arrayHelpers) => (
@@ -50,11 +50,11 @@ const HotelFormFields = () => {
                   />
                 )}
               />
-            </div>
+            </Grid>
           )}
         </>
       ))}
-    </>
+    </Grid>
   )
 }
 

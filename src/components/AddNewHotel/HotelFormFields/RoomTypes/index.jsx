@@ -20,7 +20,7 @@ const RoomTypes = ({ tariffs, arrayHelpers }) => {
     <div>
       <h4> Select Room types and enter rates </h4>
 
-      <Grid container spacing={4}>
+      <Grid container spacing={3}>
         {tariffs.map(({ roomType, rate }, index) => {
           const isChecked = isSelected(index)
           return (
@@ -29,6 +29,8 @@ const RoomTypes = ({ tariffs, arrayHelpers }) => {
                 style={{
                   width: "inherit",
                   display: "flex",
+                  marginRight: 10,
+                  marginLeft: 10,
                   alignItems: "start",
                   justifyContent: "space-between"
                 }}

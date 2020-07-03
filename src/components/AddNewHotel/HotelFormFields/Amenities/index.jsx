@@ -27,7 +27,7 @@ const Amenities = ({ arrayHelpers, amenities }) => {
   }
 
   return (
-    <div>
+    <>
       <h4>Select Amenities</h4>
       <div
         style={{
@@ -53,7 +53,7 @@ const Amenities = ({ arrayHelpers, amenities }) => {
           />
         ))}
       </div>
-    </div>
+    </>
   )
 }
 
