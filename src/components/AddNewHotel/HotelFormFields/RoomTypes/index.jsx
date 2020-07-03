@@ -16,26 +16,6 @@ const RoomTypes = ({ tariffs, arrayHelpers }) => {
     return addedTypes[index].isSelected
   }
 
-  const handleChange = (checked, index) => {
-    if (checked) {
-      arrayHelpers.push({
-        roomType: tariffs[index].roomType,
-        rate: ""
-      })
-    } else {
-      const {
-        form: {
-          values: { tariffs: addedTypes }
-        }
-      } = arrayHelpers
-
-      const addedIndex = addedTypes.findIndex(
-        ({ roomType }) => roomType === tariffs[index]
-      )
-      arrayHelpers.remove(addedIndex)
-    }
-  }
-
   return (
     <div>
       <h4> Select Room types and enter rates </h4>
