@@ -19,21 +19,27 @@ const HotelsList = ({ hotels, onHotelSelect }) => {
   const classes = useStyles()
 
   return (
-    <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="select-outlined-label">Hotels </InputLabel>
-      <Select
-        labelId="demo-simple-select-outlined-label"
-        id="demo-simple-select-outlined"
-        onChange={onHotelSelect}
-        label="Hotels"
-      >
-        {hotels.map((hotel) => (
-          <MenuItem value={hotel._id}>
-            <em>{hotel.hotelName}</em>
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <>
+      {hotels.length > 0 ? (
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="select-outlined-label">Hotels </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            onChange={onHotelSelect}
+            label="Hotels"
+          >
+            {hotels.map((hotel) => (
+              <MenuItem value={hotel._id}>
+                <em>{hotel.hotelName}</em>
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      ) : (
+        <h4>No Hotels Found</h4>
+      )}
+    </>
   )
 }
 

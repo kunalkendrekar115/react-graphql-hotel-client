@@ -32,7 +32,6 @@ const Amenities = ({ arrayHelpers, amenities }) => {
       <div
         style={{
           display: "flex",
-          width: "inherit",
           justifyContent: "space-between"
         }}
       >

@@ -16,50 +16,48 @@ const RoomTypes = ({ tariffs, arrayHelpers }) => {
     return addedTypes[index].isSelected
   }
 
+  const { tariffsError } = arrayHelpers.form.errors
+
   return (
     <div>
       <h4> Select Room types and enter rates </h4>
-
+      {tariffsError && <span style={{ color: "red" }}>{tariffsError}</span>}
       <Grid container spacing={3}>
-        {tariffs.map(({ roomType, rate }, index) => {
-          const isChecked = isSelected(index)
-          return (
-            <Grid item xs={6}>
-              <div
-                style={{
-                  width: "inherit",
-                  display: "flex",
-                  marginRight: 10,
-                  marginLeft: 10,
-                  alignItems: "start",
-                  justifyContent: "space-between"
-                }}
-              >
-                <FormControlLabel
-                  control={
-                    <CustomField
-                      type="checkbox"
-                      name={`tariffs[${index}].isSelected`}
-                      key={roomType}
-                    />
-                  }
-                  label={roomType}
-                />
+        {tariffs.map(({ roomType, rate }, index) => (
+          <Grid item xs={6}>
+            <div
+              style={{
+                display: "flex",
+                marginRight: 10,
+                marginLeft: 10,
+                alignItems: "start",
+                justifyContent: "space-between"
+              }}
+            >
+              <FormControlLabel
+                control={
+                  <CustomField
+                    type="checkbox"
+                    name={`tariffs[${index}].isSelected`}
+                    key={roomType}
+                  />
+                }
+                label={roomType}
+              />
 
-                <CustomField
-                  disabled={!isChecked}
-                  name={`tariffs[${index}].rate`}
-                  type="number"
-                  size="small"
-                  style={{ width: 90 }}
-                  variant="outlined"
-                  id={roomType}
-                  label={"Rate"}
-                />
-              </div>
-            </Grid>
-          )
-        })}
+              <CustomField
+                disabled={!isSelected(index)}
+                name={`tariffs[${index}].rate`}
+                type="number"
+                size="small"
+                style={{ width: 90 }}
+                variant="outlined"
+                id={roomType}
+                label={"Rate"}
+              />
+            </div>
+          </Grid>
+        ))}
       </Grid>
     </div>
   )

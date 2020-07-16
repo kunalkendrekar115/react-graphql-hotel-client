@@ -10,7 +10,7 @@ import { fields } from "../helper"
 const HotelFormFields = () => {
   return (
     <Grid container spacing={3} style={{ marginTop: 10 }}>
-      {fields.map((field, index) => (
+      {fields.map((field) => (
         <>
           {field.tariffs === undefined && field.amenities === undefined && (
             <Grid item xs={6}>

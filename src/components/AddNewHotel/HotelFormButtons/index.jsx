@@ -6,27 +6,20 @@ const HotelFormButtons = ({ formik }) => {
   return (
     <div
       style={{
-        width: "inherit",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         marginTop: 30,
         marginBottom: 20
       }}
     >
       <Button
-        style={{ marginRight: 30 }}
         variant="contained"
         color="secondary"
         onClick={() => formik.handleReset()}
       >
         Reset
       </Button>
-      <Button
-        style={{ marginLeft: 30 }}
-        type="submit"
-        variant="contained"
-        color="primary"
-      >
+      <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>
     </div>

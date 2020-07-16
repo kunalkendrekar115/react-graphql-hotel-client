@@ -9,6 +9,12 @@ export const validate = (values) => {
   if (values.contactPhone === null) errors.contactPhone = "Enter Contact Phone"
   if (values.contactEmail === "") errors.contactEmail = "Enter Contact Email"
 
+  const isRoomTypeSelected =
+    values.tariffs.findIndex(({ isSelected }) => isSelected === true) !== -1
+
+  if (!isRoomTypeSelected)
+    errors.tariffsError = "Please select atleast 1 room type"
+
   values.tariffs.map(({ rate, isSelected }, index) => {
     if (isSelected && rate === "") errors.tariffs[index].rate = "Enter Rate"
   })
@@ -18,6 +24,7 @@ export const validate = (values) => {
 
   if (!isTariffError) delete errors.tariffs
 
+  console.log(errors)
   return errors
 }
 
