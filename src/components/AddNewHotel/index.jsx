@@ -1,38 +1,38 @@
-import React from "react"
-import { Formik, Form } from "formik"
-import { useHistory } from "react-router-dom"
+import React from "react";
+import { Formik, Form } from "formik";
+import { useHistory } from "react-router-dom";
 
-import HotelFormFields from "./HotelFormFields"
-import HotelFormButtons from "./HotelFormButtons"
-import { getInitialValues, validate } from "./helper"
+import HotelFormFields from "./HotelFormFields";
+import HotelFormButtons from "./HotelFormButtons";
+import { getInitialValues, validate } from "./helper";
 
-import { useMutation } from "@apollo/react-hooks"
-import { ADD_HOTEL, LIST_HOTELS } from "../../queries"
-import LoadingContainer from "../common/LoadingContainer"
+import { useMutation } from "@apollo/react-hooks";
+import { ADD_HOTEL, LIST_HOTELS } from "../../queries";
+import LoadingContainer from "../common/LoadingContainer";
 
 const AddNewHotel = () => {
-  const history = useHistory()
+  const history = useHistory();
 
   const [addHotel, { loading, error }] = useMutation(ADD_HOTEL, {
     errorPolicy: "all",
     refetchQueries: [{ query: LIST_HOTELS }],
     onCompleted: (data) => {
-      history.goBack()
+      history.goBack();
     },
-    onError: (error) => {}
-  })
+    onError: (error) => {},
+  });
 
   const handleSubmit = (values) => {
     let filterSelectedTariffs = values.tariffs.reduce((acc, tariff) => {
       if (tariff.isSelected)
-        return [...acc, { roomType: tariff.roomType, rate: tariff.rate }]
-      return acc
-    }, [])
+        return [...acc, { roomType: tariff.roomType, rate: tariff.rate }];
+      return acc;
+    }, []);
 
     addHotel({
-      variables: { hotel: { ...values, tariffs: filterSelectedTariffs } }
-    })
-  }
+      variables: { hotel: { ...values, tariffs: filterSelectedTariffs } },
+    });
+  };
   return (
     <LoadingContainer
       isLoading={loading}
@@ -43,7 +43,7 @@ const AddNewHotel = () => {
           width: "100%",
           display: "flex",
           marginTop: 10,
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <Formik
@@ -60,7 +60,7 @@ const AddNewHotel = () => {
         </Formik>
       </div>
     </LoadingContainer>
-  )
-}
+  );
+};
 
-export default AddNewHotel
+export default AddNewHotel;

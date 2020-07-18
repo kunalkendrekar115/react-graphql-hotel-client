@@ -1,41 +1,46 @@
-import React from "react"
+import React from "react";
 
-import { Formik, Form } from "formik"
-import { useMutation } from "@apollo/react-hooks"
-import WriteReviewFields from "./WriteReviewFields"
+import { Formik, Form } from "formik";
+import { useMutation } from "@apollo/react-hooks";
+import WriteReviewFields from "./WriteReviewFields";
 
-import { getInitialValues, validate, fields } from "../helpers"
-import { ADD_REVIEW, GET_HOTEL, LIST_HOTELS } from "../../../../queries"
-import WriteReviewButtons from "./WriteReviewButtons"
+import { getInitialValues, validate, fields } from "../helpers";
+import {
+  ADD_REVIEW,
+  GET_HOTEL_INFO_BY_ID,
+  LIST_HOTELS,
+} from "../../../../queries";
+
+import WriteReviewButtons from "./WriteReviewButtons";
 
 const WriteReviewForm = ({ onCancel, hotelId }) => {
   const [addReview, { loading, error }] = useMutation(ADD_REVIEW, {
     onCompleted: (data) => {
-      onCancel()
+      onCancel();
     },
     onError: (error) => {
-      console.log(error)
+      console.log(error);
     },
 
     update: (proxy, { data: { addReview: updatedHotel } }) => {
       proxy.writeQuery({
-        query: GET_HOTEL,
+        query: GET_HOTEL_INFO_BY_ID,
         data: {
-          hotel: { ...updatedHotel }
-        }
-      })
-    }
-  })
+          hotel: { ...updatedHotel },
+        },
+      });
+    },
+  });
 
   const handleSubmit = (values) => {
     addReview({
       variables: {
         _id: hotelId,
-        review: { ...values, rating: +values.rating }
+        review: { ...values, rating: +values.rating },
       },
-      refetchQueries: [{ query: LIST_HOTELS }]
-    })
-  }
+      refetchQueries: [{ query: LIST_HOTELS }],
+    });
+  };
 
   return (
     <Formik
@@ -50,7 +55,7 @@ const WriteReviewForm = ({ onCancel, hotelId }) => {
         <WriteReviewButtons onCancel={onCancel} loading={loading} />
       </Form>
     </Formik>
-  )
-}
+  );
+};
 
-export default WriteReviewForm
+export default WriteReviewForm;

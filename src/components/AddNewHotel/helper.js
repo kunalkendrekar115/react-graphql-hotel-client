@@ -1,65 +1,65 @@
 export const validate = (values) => {
-  const tariffs = values.tariffs.map((tariff) => ({ ...tariff, value: "" }))
-  const errors = { tariffs }
+  const tariffs = values.tariffs.map((tariff) => ({ ...tariff, value: "" }));
+  const errors = { tariffs };
 
-  if (values.hotelName === "") errors.hotelName = "Enter Hotel name"
-  if (values.hotelAddress === "") errors.hotelAddress = "Enter Hotel address"
-  if (values.pincode === null) errors.pincode = "Enter Pincode"
-  if (values.country === "") errors.country = "Enter Country"
-  if (values.contactPhone === null) errors.contactPhone = "Enter Contact Phone"
-  if (values.contactEmail === "") errors.contactEmail = "Enter Contact Email"
+  if (values.hotelName === "") errors.hotelName = "Enter Hotel name";
+  if (values.hotelAddress === "") errors.hotelAddress = "Enter Hotel address";
+  if (values.pincode === null) errors.pincode = "Enter Pincode";
+  if (values.country === "") errors.country = "Enter Country";
+  if (values.contactPhone === null) errors.contactPhone = "Enter Contact Phone";
+  if (values.contactEmail === "") errors.contactEmail = "Enter Contact Email";
 
   const isRoomTypeSelected =
-    values.tariffs.findIndex(({ isSelected }) => isSelected === true) !== -1
+    values.tariffs.findIndex(({ isSelected }) => isSelected === true) !== -1;
 
   if (!isRoomTypeSelected)
-    errors.tariffsError = "Please select atleast 1 room type"
+    errors.tariffsError = "Please select atleast 1 room type";
 
   values.tariffs.map(({ rate, isSelected }, index) => {
-    if (isSelected && rate === "") errors.tariffs[index].rate = "Enter Rate"
-  })
+    if (isSelected && rate === "") errors.tariffs[index].rate = "Enter Rate";
+  });
 
   const isTariffError =
-    errors.tariffs.findIndex((tariff) => tariff.rate === "Enter Rate") !== -1
+    errors.tariffs.findIndex((tariff) => tariff.rate === "Enter Rate") !== -1;
 
-  if (!isTariffError) delete errors.tariffs
+  if (!isTariffError) delete errors.tariffs;
 
-  console.log(errors)
-  return errors
-}
+  console.log(errors);
+  return errors;
+};
 
 export const fields = [
   {
     name: "hotelName",
     label: "Hotel Name",
-    type: "text"
+    type: "text",
   },
   {
     name: "hotelAddress",
     label: "Full Address",
-    type: "text"
+    type: "text",
   },
   {
     name: "pincode",
     label: "Pincode",
-    type: "number"
+    type: "number",
   },
   {
     name: "country",
     label: "Country",
-    type: "text"
+    type: "text",
   },
 
   {
     name: "contactPhone",
     label: "Contact Number",
-    type: "number"
+    type: "number",
   },
 
   {
     name: "contactEmail",
     label: "Contact Email",
-    type: "text"
+    type: "text",
   },
   {
     name: "amenities",
@@ -68,24 +68,24 @@ export const fields = [
       {
         name: "hasWifi",
         label: "Wifi",
-        type: "boolean"
+        type: "boolean",
       },
       {
         name: "hasRoomService",
         label: "Room Service",
-        type: "boolean"
+        type: "boolean",
       },
       {
         name: "hasLaundry",
         label: "Laundry",
-        type: "boolean"
+        type: "boolean",
       },
       {
         name: "hasLocker",
         label: "Locker",
-        type: "boolean"
-      }
-    ]
+        type: "boolean",
+      },
+    ],
   },
 
   {
@@ -95,31 +95,31 @@ export const fields = [
       { roomType: "Single", rate: "" },
       { roomType: "Double", rate: "" },
       { roomType: "Executive", rate: "" },
-      { roomType: "Delux", rate: "" }
-    ]
-  }
-]
+      { roomType: "Delux", rate: "" },
+    ],
+  },
+];
 
 const getDefaultValueFromType = (type) => {
   switch (type) {
     case "text":
-      return ""
+      return "";
     case "array":
-      return []
+      return [];
     case "boolean":
-      return false
+      return false;
     default:
-      return null
+      return null;
   }
-}
+};
 
 export const getInitialValues = () => {
-  let initialValues = {}
+  let initialValues = {};
 
   fields.map((field, index) => {
-    initialValues[field.name] = getDefaultValueFromType(field.type)
-    if (field.tariffs) initialValues[field.name] = field.tariffs
-  })
+    initialValues[field.name] = getDefaultValueFromType(field.type);
+    if (field.tariffs) initialValues[field.name] = field.tariffs;
+  });
 
-  return initialValues
-}
+  return initialValues;
+};

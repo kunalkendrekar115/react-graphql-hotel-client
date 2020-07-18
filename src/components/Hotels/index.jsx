@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery, useLazyQuery } from "@apollo/react-hooks";
 
-import { LIST_HOTELS, GET_HOTEL } from "../../queries";
+import { LIST_HOTELS, GET_HOTEL_INFO_BY_ID } from "../../queries";
 import HotelsList from "./HotelsList";
 
 import LoadingContainer from "../common/LoadingContainer";
@@ -17,12 +17,12 @@ const Hotels = () => {
   } = useQuery(LIST_HOTELS);
 
   const [
-    getHotel,
+    getHotelInfo,
     { loading: loadingHotelInfo, data: hotelData, error: hotelLoadError },
-  ] = useLazyQuery(GET_HOTEL);
+  ] = useLazyQuery(GET_HOTEL_INFO_BY_ID);
 
   const handleHotelSelect = ({ target: { value: id } }) => {
-    id && getHotel({ variables: { id } });
+    id && getHotelInfo({ variables: { id } });
   };
 
   return (

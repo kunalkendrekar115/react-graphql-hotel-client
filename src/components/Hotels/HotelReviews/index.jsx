@@ -6,8 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import ModalWriteReview from "./ModalWriteReview";
 import ReviewLists from "./ReviewLists";
 
-export const ReviewModalContext = React.createContext();
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",

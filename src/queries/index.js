@@ -1,4 +1,4 @@
-import gql from "graphql-tag"
+import gql from "graphql-tag";
 
 export const ADD_HOTEL = gql`
   mutation CreateHotel($hotel: HotelInput) {
@@ -6,7 +6,7 @@ export const ADD_HOTEL = gql`
       _id
     }
   }
-`
+`;
 
 export const HOTEL_FRAGMENT = gql`
   fragment HotelFragment on Hotel {
@@ -30,7 +30,7 @@ export const HOTEL_FRAGMENT = gql`
       comments
     }
   }
-`
+`;
 
 export const ADD_REVIEW = gql`
   mutation AddReview($_id: String, $review: ReviewInput) {
@@ -39,16 +39,16 @@ export const ADD_REVIEW = gql`
     }
   }
   ${HOTEL_FRAGMENT}
-`
+`;
 
-export const GET_HOTEL = gql`
+export const GET_HOTEL_INFO_BY_ID = gql`
   query GetHotel($id: String) {
     hotel(_id: $id) {
       ...HotelFragment
     }
   }
   ${HOTEL_FRAGMENT}
-`
+`;
 
 export const LIST_HOTELS = gql`
   {
@@ -57,4 +57,4 @@ export const LIST_HOTELS = gql`
       hotelName
     }
   }
-`
+`;
