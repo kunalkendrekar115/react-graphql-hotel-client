@@ -1,14 +1,14 @@
-import React from "react";
+import React from "react"
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-} from "react-router-dom";
+  Redirect
+} from "react-router-dom"
 
-import AddNewHotel from "./AddNewHotel";
-import Hotels from "./Hotels";
-import Header from "./common/Header";
+import AddNewHotel from "./AddNewHotel"
+import Hotels from "./Hotels"
+import Header from "./common/Header"
 
 function Routes() {
   return (
@@ -25,7 +25,7 @@ function Routes() {
         </Route>
       </Switch>
     </Router>
-  );
+  )
 }
 
-export default Routes;
+export default Routes

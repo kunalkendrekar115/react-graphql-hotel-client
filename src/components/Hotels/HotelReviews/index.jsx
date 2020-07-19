@@ -1,30 +1,30 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import ModalWriteReview from "./ModalWriteReview";
-import ReviewLists from "./ReviewLists";
+import Button from "@material-ui/core/Button"
+import Typography from "@material-ui/core/Typography"
+import { makeStyles } from "@material-ui/core/styles"
+import ModalWriteReview from "./ModalWriteReview"
+import ReviewLists from "./ReviewLists"
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     width: "inherit",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   title: {
-    fontSize: 24,
-  },
-}));
+    fontSize: 24
+  }
+}))
 
 const HotelReviews = ({ hotel }) => {
-  const [isReviewModalOpeded, setReivewModalOpen] = useState(false);
+  const [isReviewModalOpeded, setReivewModalOpen] = useState(false)
 
   const handleReviewModalOpen = (isOpen) => {
-    setReivewModalOpen(isOpen);
-  };
+    setReivewModalOpen(isOpen)
+  }
 
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <div
       style={{
@@ -33,7 +33,7 @@ const HotelReviews = ({ hotel }) => {
         flexDirection: "column",
         boxSizing: "border-box",
         paddingLeft: 20,
-        marginTop: 10,
+        marginTop: 10
       }}
     >
       <div className={classes.root}>
@@ -55,7 +55,7 @@ const HotelReviews = ({ hotel }) => {
         onCancel={() => setReivewModalOpen(false)}
       />
     </div>
-  );
-};
+  )
+}
 
-export default HotelReviews;
+export default HotelReviews
